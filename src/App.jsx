@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
+import CountUp from "react-countup";
 import Modal from "./components/Modal/Modal";
+import Button from "./components/Shared/Button";
 import "./app.css";
 import "./reset.css";
 
@@ -23,8 +25,13 @@ function App() {
 
   const hoverOffTabletImage = () => {
     setTabletHovered(false);
-    setMouseX(0);
-    setMouseY(0);
+  };
+
+  const styling = {
+    bottom: "-14px",
+    right: "-14px",
+    height: "130px",
+    width: "130px",
   };
 
   return (
@@ -51,27 +58,35 @@ function App() {
                 and education through technology platforms.
               </div>
               <div className="buttons flex">
-                <button>Donate Now</button>
-                <button
-                  className="play-intro"
-                  onClick={() => {
+                <Button>Donate Now</Button>
+
+                <Button
+                  version="play-intro"
+                  btnFunction={() => {
                     setShowIntro((prevState) => !prevState);
                   }}
                 >
                   Play Intro
-                </button>
+                </Button>
               </div>
               <ul className="site-stats flex">
                 <li>
-                  <h2>30+</h2>
+                  <h2>
+                    <CountUp end={30} duration={1.6} />+
+                  </h2>
                   Years Experience
                 </li>
                 <li>
-                  <h2>45k+</h2>
+                  <h2>
+                    <CountUp end={45} duration={1.8} />
+                    k+
+                  </h2>
                   Users Reached
                 </li>
                 <li>
-                  <h2>400+</h2>
+                  <h2>
+                    <CountUp end={400} duration={1.5} />+
+                  </h2>
                   Current Locations
                 </li>
               </ul>
@@ -84,37 +99,36 @@ function App() {
           >
             <div
               className="flex right"
-              style={{
-                transform: `rotateX(${mouseX * 0.015}deg) rotateY(${
-                  mouseY * -0.015
-                }deg)`,
-              }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={hoverOffTabletImage}
-              onMouseEnter={hoverTabletImage}
+              // style={{
+              //   transform: `rotateX(${mouseX * 0.025}deg) rotateY(${
+              //     mouseY * -0.025
+              //   }deg)`,
+              // }}
+              // onMouseMove={handleMouseMove}
             >
               <div className="tablet-image">
-                <div className="box top-left" />
-                <div className="box bottom-right" />
                 <div
                   className="intro-video-box flex"
                   onClick={() => {
                     setShowIntro((prevState) => !prevState);
                   }}
+                  onMouseLeave={hoverOffTabletImage}
+                  onMouseEnter={hoverTabletImage}
                 >
                   <svg viewBox="0 0 24 24">
-                    <path
-                      className="circle"
-                      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                    ></path>
-                    <path
-                      className="triangle"
-                      d="M15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868V9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059Z"
-                    ></path>
+                    <path d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"></path>
                   </svg>
                   <div>Play Intro</div>
                 </div>
-                <div className="mini-bottom-image" />
+
+                <div className="box top-left" />
+
+                <div
+                  className={`mini-bottom-image ${tabletHovered && "shrink"}`}
+                />
+                <div
+                  className={`box bottom-right ${tabletHovered && "shrink"}`}
+                />
               </div>
             </div>
           </ScrollAnimation>

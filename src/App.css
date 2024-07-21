@@ -30,7 +30,7 @@ body {
 /* thanks to kevin powell */
 .content-grid {
   --padding-inline: 3rem;
-  --content-max-width: 120ch;
+  --content-max-width: 135ch;
   --breakout-max-width: 135ch;
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
@@ -74,7 +74,7 @@ header .grid {
   grid-template-columns: repeat(2, 1fr);
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 950px) {
   header .grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -82,7 +82,15 @@ header .grid {
 
 header .left {
   gap: 30px;
+  height: 100%;
   justify-content: center;
+}
+
+@media screen and (max-width: 950px) {
+  header .left {
+    align-items: center;
+    text-align: center;
+  }
 }
 
 header .slogan {
@@ -93,7 +101,7 @@ header .slogan {
 
 header h1 {
   color: var(--header-text-clr);
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(3rem, 6vw, 4rem);
   margin-bottom: 30px;
 }
 
@@ -113,10 +121,12 @@ header button {
 }
 
 header button.play-intro {
+  background-color: var(--accent-clr2);
+  border: 2px solid var(--accent-clr2);
   display: none;
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 950px) {
   header button.play-intro {
     display: block;
   }
@@ -126,6 +136,10 @@ header button:hover {
   background-color: var(--header-clr);
   color: var(--accent-clr1);
   cursor: pointer;
+}
+
+header button.play-intro:hover {
+  color: var(--accent-clr2);
 }
 
 header ul.site-stats {
@@ -138,7 +152,7 @@ header ul.site-stats {
 
 header h2 {
   color: var(--header-text-clr);
-  font-size: clamp(2.6rem, 4vw, 3rem);
+  font-size: clamp(2.4rem, 6vw, 3rem);
   margin-bottom: 16px;
 }
 
@@ -163,17 +177,17 @@ header .right {
   transition: 0.1s linear;
 }
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 950px) {
   header .right {
     display: none;
   }
 }
 
 header .tablet-image {
-  background: url(./assets/AxxsTablet_Show.jpg) no-repeat 95% 0 / cover
+  background: url(./assets/AxxsTablet_Show.jpg) no-repeat 90% 0 / cover
     var(--accent-clr2);
   border-radius: 20px;
-  height: 420px;
+  height: 450px;
   position: relative;
   transition: 0.2s linear;
   width: 80%;
@@ -187,6 +201,7 @@ header .box {
   background: var(--header-bg);
   border-radius: 20px;
   position: absolute;
+  transition: 0.2s linear;
 }
 
 header .box.top-left {
@@ -200,6 +215,16 @@ header .box.bottom-right {
   bottom: -15px;
   height: 150px;
   right: -15px;
+  width: 150px;
+}
+
+header .tablet-image:hover .box.bottom-right {
+  height: 200px;
+  width: 200px;
+}
+
+header .tablet-image:hover .box.bottom-right.shrink {
+  height: 150px;
   width: 150px;
 }
 
@@ -249,6 +274,7 @@ header .mini-bottom-image {
   height: 130px;
   border-radius: 18px;
   position: absolute;
+  transition: 0.2s linear;
   width: 130px;
   z-index: 1;
 }
@@ -262,46 +288,99 @@ header .intro-video-box {
   font-size: 0.9rem;
   font-weight: 600;
   height: 111px;
-  left: -10px;
+  left: -15px;
   justify-content: center;
-  top: -10px;
+  top: -15px;
   transition: 0.2s linear;
   width: 131px;
 }
 
 /* header .intro-video-box:hover {
-  scale: 1.1;
-  transform: rotateX(-20deg) rotateY(-20deg);
+  scale: 1.05;
+  transform: rotate(-5deg);
 } */
 
+header .intro-video-box:hover {
+  height: 151px;
+  width: 171px;
+}
+
+header .intro-video-box:hover ~ .box.top-left {
+  height: 180px;
+  width: 200px;
+}
+
 header .intro-video-box svg {
-  margin-top: 6px;
+  animation: pulse-yellow 1.5s infinite;
+  background-color: var(--accent-clr2);
+  border-radius: 100px;
+  fill: var(--bg-clr);
+  margin: 10px 0 6px 0;
+  padding: 13px;
+  transition: 0.2s linear;
   width: 50px;
 }
 
-header .intro-video-box svg .circle {
-  fill: var(--bg-clr);
+header .intro-video-box:hover {
+  font-size: 1.2rem;
 }
 
-header .intro-video-box svg .triangle {
+header .intro-video-box:hover svg {
+  margin-bottom: 16px;
+  scale: 1.2;
+}
+
+@keyframes pulse-yellow {
+  0% {
+    box-shadow: 0 0 0 var(--accent-clr2);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--accent-clr2);
+  }
+  100% {
+    box-shadow: 0 0 0 var(--accent-clr2);
+  }
+}
+
+header .intro-video-box:hover svg {
+  animation: pulse-white 1.5s infinite;
+  background-color: var(--bg-clr);
   fill: var(--accent-clr2);
-  transition: 0.2s linear;
 }
 
-header .intro-video-box:hover svg .triangle {
-  fill: var(--accent-clr1);
+@keyframes pulse-white {
+  0% {
+    box-shadow: 0 0 0 var(--bg-clr);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--bg-clr);
+  }
+  100% {
+    box-shadow: 0 0 0 var(--bg-clr);
+  }
 }
 
 header .mini-bottom-image {
   background: url(./assets/AxxsMiniInHand.png) no-repeat 5px 100% / 85%
     var(--nav-bg);
-  bottom: -10px;
-  right: -10px;
+  bottom: -14px;
+  right: -14px;
+}
+
+header .tablet-image:hover .mini-bottom-image {
+  height: 180px;
+  width: 180px;
+}
+
+header .tablet-image .mini-bottom-image.shrink {
+  height: 130px;
+  width: 130px;
 }
 
 footer {
   background-color: var(--footer-bg);
   color: var(--footer-text-clr);
+  padding: 30px 0;
 }
 
 .grid {
