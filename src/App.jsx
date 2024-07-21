@@ -1,14 +1,20 @@
 import { useState } from "react";
 import ScrollAnimation from "react-animate-on-scroll";
+import Modal from "./components/Modal/Modal";
 import "./app.css";
 import "./reset.css";
 
 function App() {
+  const [showIntro, setShowIntro] = useState(false);
+
   return (
     <main className="content-grid">
+      <Modal showIntro={showIntro} setShowIntro={setShowIntro} />
+
       <nav className="content-grid full-width">
         <div>this is the nav</div>
       </nav>
+
       <header className="content-grid full-width">
         <div className="grid">
           <ScrollAnimation
@@ -24,7 +30,17 @@ function App() {
                 rehabilitation facilities users by funding health and wellness
                 and education through technology platforms.
               </div>
-              <button>Donate Now</button>
+              <div className="buttons flex">
+                <button>Donate Now</button>
+                <button
+                  className="play-intro"
+                  onClick={() => {
+                    setShowIntro((prevState) => !prevState);
+                  }}
+                >
+                  Play Intro
+                </button>
+              </div>
               <ul className="site-stats flex">
                 <li>
                   <h2>30+</h2>
@@ -50,7 +66,12 @@ function App() {
               <div className="tablet-image">
                 <div className="box top-left" />
                 <div className="box bottom-right" />
-                <div className="intro-video-box flex">
+                <div
+                  className="intro-video-box flex"
+                  onClick={() => {
+                    setShowIntro((prevState) => !prevState);
+                  }}
+                >
                   <svg viewBox="0 0 24 24">
                     <path
                       className="circle"

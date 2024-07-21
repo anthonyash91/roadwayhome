@@ -29,7 +29,7 @@ body {
 
 /* thanks to kevin powell */
 .content-grid {
-  --padding-inline: 2rem;
+  --padding-inline: 3rem;
   --content-max-width: 120ch;
   --breakout-max-width: 135ch;
   --breakout-size: calc(
@@ -74,6 +74,12 @@ header .grid {
   grid-template-columns: repeat(2, 1fr);
 }
 
+@media screen and (max-width: 930px) {
+  header .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 header .left {
   gap: 30px;
   justify-content: center;
@@ -87,14 +93,12 @@ header .slogan {
 
 header h1 {
   color: var(--header-text-clr);
-  font-size: 4rem;
+  font-size: clamp(3rem, 4vw, 4rem);
   margin-bottom: 30px;
 }
 
-header h2 {
-  color: var(--header-text-clr);
-  font-size: 3rem;
-  margin-bottom: 10px;
+header .buttons {
+  gap: 20px;
 }
 
 header button {
@@ -108,6 +112,16 @@ header button {
   width: 150px;
 }
 
+header button.play-intro {
+  display: none;
+}
+
+@media screen and (max-width: 930px) {
+  header button.play-intro {
+    display: block;
+  }
+}
+
 header button:hover {
   background-color: var(--header-clr);
   color: var(--accent-clr1);
@@ -119,6 +133,12 @@ header ul.site-stats {
   list-style: none;
   margin-top: 10px;
   padding: 0;
+}
+
+header h2 {
+  color: var(--header-text-clr);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 10px;
 }
 
 header ul.site-stats li:not(:last-child) {
@@ -142,9 +162,22 @@ header ul.site-stats li:last-child {
   padding-right: 0;
 }
 
+@media screen and (max-width: 1075px) {
+  header ul.site-stats li {
+    font-size: 0.9rem !important;
+    line-height: 1.5rem;
+  }
+}
+
 header .right {
   /* background: red; */
   justify-content: end;
+}
+
+@media screen and (max-width: 930px) {
+  header .right {
+    display: none;
+  }
 }
 
 header .tablet-image {
@@ -153,7 +186,7 @@ header .tablet-image {
   border-radius: 20px;
   height: 420px;
   position: relative;
-  width: 420px;
+  width: 80%;
 }
 
 header .box {
@@ -163,16 +196,16 @@ header .box {
 }
 
 header .box.top-left {
-  height: 130px;
+  height: 140px;
   left: -25px;
   top: -25px;
   width: 160px;
 }
 
 header .box.bottom-right {
-  bottom: -20px;
+  bottom: -15px;
   height: 150px;
-  right: -20px;
+  right: -15px;
   width: 150px;
 }
 
@@ -208,19 +241,19 @@ header .box.bottom-right::after {
 }
 
 header .box.bottom-right::before {
-  bottom: 20px;
+  bottom: 15px;
   left: -20px;
 }
 
 header .box.bottom-right::after {
-  right: 20px;
+  right: 15px;
   top: -20px;
 }
 
 header .intro-video-box,
 header .mini-bottom-image {
   height: 130px;
-  border-radius: 16px;
+  border-radius: 18px;
   position: absolute;
   width: 130px;
   z-index: 1;
@@ -234,12 +267,12 @@ header .intro-video-box {
   flex-direction: column;
   font-size: 0.9rem;
   font-weight: 600;
-  height: 100px;
+  height: 111px;
   left: -10px;
   justify-content: center;
   top: -10px;
   transition: 0.2s linear;
-  width: 130px;
+  width: 131px;
 }
 
 header .intro-video-box:hover {
@@ -247,7 +280,7 @@ header .intro-video-box:hover {
 }
 
 header .intro-video-box svg {
-  margin-top: 5px;
+  margin-top: 6px;
   width: 50px;
 }
 
@@ -267,8 +300,8 @@ header .intro-video-box:hover svg .triangle {
 header .mini-bottom-image {
   background: url(./assets/AxxsMiniInHand.png) no-repeat 5px 100% / 85%
     var(--nav-bg);
-  bottom: -15px;
-  right: -15px;
+  bottom: -10px;
+  right: -10px;
 }
 
 footer {

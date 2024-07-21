@@ -1,0 +1,72 @@
+/* dark background behind modal */
+.modal-bg {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+/* modal container */
+.modal {
+  background-color: var(--header-bg);
+  border-radius: 20px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.7);
+  max-width: 640px;
+  padding: 30px;
+  position: relative;
+  width: 90%;
+}
+
+/* responsive youtube videos */
+.auto-resizable-iframe {
+  border-radius: 20px;
+  margin: 0px auto;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.auto-resizable-iframe > div {
+  height: 0px;
+  padding-bottom: 57%;
+  position: relative;
+}
+
+.auto-resizable-iframe iframe {
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+/* close modal button */
+.close-modal {
+  cursor: pointer;
+  height: 50px;
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 50px;
+  z-index: 9;
+}
+
+.close-modal svg path {
+  transition: 0.2s linear;
+}
+
+.close-modal svg .close-modal-button {
+  fill: var(--accent-clr1);
+}
+
+.close-modal svg .close-modal-x {
+  fill: var(--bg-clr);
+}
+
+.close-modal:hover svg .close-modal-button {
+  fill: var(--accent-clr2);
+}
