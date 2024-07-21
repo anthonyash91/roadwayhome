@@ -1,42 +1,289 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
+
+:root {
+  --nav-bg: #efe0ae;
+  --bg-clr: #ffffff;
+  --header-bg: #f9f5e8;
+  --footer-bg: #1f2625;
+  --footer-text-clr: #949b95;
+  --header-text-clr: #090e0d;
+  --text-clr: #636b6a;
+  --accent-clr1: #00715d;
+  --accent-clr2: #f1cb0b;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* start */
+html {
+  font-size: 62.5%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color: var(--bg-clr);
+  color: var(--text-clr);
+  font: normal 1.1rem/2rem "Roboto", Helvetica, Arial, Sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* thanks to kevin powell */
+.content-grid {
+  --padding-inline: 2rem;
+  --content-max-width: 120ch;
+  --breakout-max-width: 135ch;
+  --breakout-size: calc(
+    (var(--breakout-max-width) - var(--content-max-width)) / 2
+  );
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding-inline), 1fr) [
+    breakout-start] minmax(0, var(--breakout-size))
+    [content-start] min(
+      100% - (var(--padding-inline) * 2),
+      var(--content-max-width)
+    )
+    [content-end]
+    minmax(0, var(--breakout-size)) [breakout-end]
+    minmax(var(--padding-inline), 1fr) [full-width-end];
 }
 
-.card {
-  padding: 2em;
+.content-grid > :not(.breakout, .full-width) {
+  grid-column: content;
 }
 
-.read-the-docs {
-  color: #888;
+.content-grid > .breakout > div {
+  grid-column: breakout;
+}
+
+.content-grid > .full-width {
+  grid-column: full-width;
+}
+
+nav {
+  background-color: var(--nav-bg);
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 80px 0;
+}
+
+header .grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+header .left {
+  gap: 30px;
+  justify-content: center;
+}
+
+header .slogan {
+  color: var(--accent-clr1);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+header h1 {
+  color: var(--header-text-clr);
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+
+header h2 {
+  color: var(--header-text-clr);
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+header button {
+  background-color: var(--accent-clr1);
+  border: 2px solid var(--accent-clr1);
+  border-radius: 99px;
+  color: var(--bg-clr);
+  font-weight: 600;
+  padding: 10px 10px;
+  transition: 0.2s linear;
+  width: 150px;
+}
+
+header button:hover {
+  background-color: var(--header-clr);
+  color: var(--accent-clr1);
+  cursor: pointer;
+}
+
+header ul.site-stats {
+  /* grid-template-columns: repeat(3, 1fr); */
+  list-style: none;
+  margin-top: 10px;
+  padding: 0;
+}
+
+header ul.site-stats li:not(:last-child) {
+  /* align-items: center; */
+  border-right: 1px solid #ffe0d1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+header ul.site-stats li {
+  padding: 0 40px;
+}
+
+header ul.site-stats li:first-child {
+  padding-left: 0;
+}
+
+header ul.site-stats li:last-child {
+  padding-right: 0;
+}
+
+header .right {
+  /* background: red; */
+  justify-content: end;
+}
+
+header .tablet-image {
+  background: url(./assets/AxxsTablet_Show.jpg) no-repeat 95% 0 / cover
+    var(--accent-clr2);
+  border-radius: 20px;
+  height: 420px;
+  position: relative;
+  width: 420px;
+}
+
+header .box {
+  background: var(--header-bg);
+  border-radius: 20px;
+  position: absolute;
+}
+
+header .box.top-left {
+  height: 130px;
+  left: -25px;
+  top: -25px;
+  width: 160px;
+}
+
+header .box.bottom-right {
+  bottom: -20px;
+  height: 150px;
+  right: -20px;
+  width: 150px;
+}
+
+header .box::after,
+header .box::before {
+  background: transparent;
+  content: "";
+  height: 20px;
+  position: absolute;
+  width: 20px;
+}
+
+header .box.top-left::before,
+header .box.top-left::after {
+  border-top-left-radius: 20px;
+  box-shadow: -20px -20px 0 20px var(--header-bg);
+}
+
+header .box.top-left::before {
+  bottom: -20px;
+  left: 25px;
+}
+
+header .box.top-left::after {
+  right: -20px;
+  top: 25px;
+}
+
+header .box.bottom-right::before,
+header .box.bottom-right::after {
+  border-bottom-right-radius: 20px;
+  box-shadow: 20px 20px 0 20px var(--header-bg);
+}
+
+header .box.bottom-right::before {
+  bottom: 20px;
+  left: -20px;
+}
+
+header .box.bottom-right::after {
+  right: 20px;
+  top: -20px;
+}
+
+header .intro-video-box,
+header .mini-bottom-image {
+  height: 130px;
+  border-radius: 16px;
+  position: absolute;
+  width: 130px;
+  z-index: 1;
+}
+
+header .intro-video-box {
+  align-items: center;
+  background-color: var(--accent-clr1);
+  color: var(--bg-clr);
+  cursor: pointer;
+  flex-direction: column;
+  font-size: 0.9rem;
+  font-weight: 600;
+  height: 100px;
+  left: -10px;
+  justify-content: center;
+  top: -10px;
+  transition: 0.2s linear;
+  width: 130px;
+}
+
+header .intro-video-box:hover {
+  scale: 1.1;
+}
+
+header .intro-video-box svg {
+  margin-top: 5px;
+  width: 50px;
+}
+
+header .intro-video-box svg .circle {
+  fill: var(--bg-clr);
+}
+
+header .intro-video-box svg .triangle {
+  fill: var(--accent-clr2);
+  transition: 0.2s linear;
+}
+
+header .intro-video-box:hover svg .triangle {
+  fill: var(--accent-clr1);
+}
+
+header .mini-bottom-image {
+  background: url(./assets/AxxsMiniInHand.png) no-repeat 5px 100% / 85%
+    var(--nav-bg);
+  bottom: -15px;
+  right: -15px;
+}
+
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text-clr);
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.column {
+  flex-direction: column;
 }
