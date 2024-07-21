@@ -6,6 +6,26 @@ import "./reset.css";
 
 function App() {
   const [showIntro, setShowIntro] = useState(false);
+  const [tabletHovered, setTabletHovered] = useState(false);
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+
+  const handleMouseMove = (event) => {
+    // console.log("Mouse position:", event.clientX, event.clientY);
+    setMouseX(event.clientX);
+    setMouseY(event.clientY);
+    // Additional logic
+  };
+
+  const hoverTabletImage = () => {
+    setTabletHovered(true);
+  };
+
+  const hoverOffTabletImage = () => {
+    setTabletHovered(false);
+    setMouseX(0);
+    setMouseY(0);
+  };
 
   return (
     <main className="content-grid">
@@ -52,7 +72,7 @@ function App() {
                 </li>
                 <li>
                   <h2>400+</h2>
-                  Locations
+                  Current Locations
                 </li>
               </ul>
             </div>
@@ -62,7 +82,17 @@ function App() {
             animateOnce={true}
             duration={1.1}
           >
-            <div className="flex right">
+            <div
+              className="flex right"
+              style={{
+                transform: `rotateX(${mouseX * 0.015}deg) rotateY(${
+                  mouseY * -0.015
+                }deg)`,
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={hoverOffTabletImage}
+              onMouseEnter={hoverTabletImage}
+            >
               <div className="tablet-image">
                 <div className="box top-left" />
                 <div className="box bottom-right" />

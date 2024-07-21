@@ -108,7 +108,7 @@ header button {
   color: var(--bg-clr);
   font-weight: 600;
   padding: 10px 10px;
-  transition: 0.2s linear;
+  transition: background-color 0.2s linear;
   width: 150px;
 }
 
@@ -130,6 +130,7 @@ header button:hover {
 
 header ul.site-stats {
   /* grid-template-columns: repeat(3, 1fr); */
+  gap: 30px;
   list-style: none;
   margin-top: 10px;
   padding: 0;
@@ -137,8 +138,13 @@ header ul.site-stats {
 
 header h2 {
   color: var(--header-text-clr);
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin-bottom: 10px;
+  font-size: clamp(2.6rem, 4vw, 3rem);
+  margin-bottom: 16px;
+}
+
+header ul.site-stats li {
+  font-size: clamp(0.5rem, 4vw, 1.1rem) !important;
+  line-height: 1.6rem;
 }
 
 header ul.site-stats li:not(:last-child) {
@@ -146,32 +152,15 @@ header ul.site-stats li:not(:last-child) {
   border-right: 1px solid #ffe0d1;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
-  justify-content: center;
-}
-
-header ul.site-stats li {
-  padding: 0 40px;
-}
-
-header ul.site-stats li:first-child {
-  padding-left: 0;
-}
-
-header ul.site-stats li:last-child {
-  padding-right: 0;
-}
-
-@media screen and (max-width: 1075px) {
-  header ul.site-stats li {
-    font-size: 0.9rem !important;
-    line-height: 1.5rem;
-  }
+  /* justify-content: center; */
+  padding-right: 30px;
 }
 
 header .right {
   /* background: red; */
   justify-content: end;
+  perspective: 1000px;
+  transition: 0.1s linear;
 }
 
 @media screen and (max-width: 930px) {
@@ -186,8 +175,13 @@ header .tablet-image {
   border-radius: 20px;
   height: 420px;
   position: relative;
+  transition: 0.2s linear;
   width: 80%;
 }
+
+/* header .tablet-image:hover {
+  transform: rotateX(-20deg) rotateY(20deg);
+} */
 
 header .box {
   background: var(--header-bg);
@@ -275,9 +269,10 @@ header .intro-video-box {
   width: 131px;
 }
 
-header .intro-video-box:hover {
+/* header .intro-video-box:hover {
   scale: 1.1;
-}
+  transform: rotateX(-20deg) rotateY(-20deg);
+} */
 
 header .intro-video-box svg {
   margin-top: 6px;
@@ -319,4 +314,8 @@ footer {
 
 .flex.column {
   flex-direction: column;
+}
+
+button:active {
+  transform: translateY(1px);
 }
