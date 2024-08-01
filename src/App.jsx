@@ -3,6 +3,9 @@ import ScrollAnimation from "react-animate-on-scroll";
 import CountUp from "react-countup";
 import Modal from "./components/Modal/Modal";
 import Button from "./components/Shared/Button";
+import Navigation from "./components/Navigation/Navigation";
+import Divider from "./components/Shared/Divider";
+import { IoMdArrowRoundUp } from "react-icons/io";
 import "./app.css";
 import "./reset.css";
 
@@ -13,34 +16,20 @@ function App() {
   const [mouseY, setMouseY] = useState(0);
 
   const handleMouseMove = (event) => {
-    // console.log("Mouse position:", event.clientX, event.clientY);
     setMouseX(event.clientX);
     setMouseY(event.clientY);
-    // Additional logic
   };
 
-  const hoverTabletImage = () => {
-    setTabletHovered(true);
-  };
-
-  const hoverOffTabletImage = () => {
-    setTabletHovered(false);
-  };
-
-  const styling = {
-    bottom: "-14px",
-    right: "-14px",
-    height: "130px",
-    width: "130px",
+  const handleMouseLeave = () => {
+    setMouseX(0);
+    setMouseY(0);
   };
 
   return (
     <main className="content-grid">
       <Modal showIntro={showIntro} setShowIntro={setShowIntro} />
-
-      <nav className="content-grid full-width">
-        <div>this is the nav</div>
-      </nav>
+      <Navigation />
+      <Divider type="nav" />
 
       <header className="content-grid full-width">
         <div className="grid">
@@ -61,7 +50,7 @@ function App() {
                 <Button>Donate Now</Button>
 
                 <Button
-                  version="play-intro"
+                  version="accent"
                   btnFunction={() => {
                     setShowIntro((prevState) => !prevState);
                   }}
@@ -99,12 +88,13 @@ function App() {
           >
             <div
               className="flex right"
-              // style={{
-              //   transform: `rotateX(${mouseX * 0.025}deg) rotateY(${
-              //     mouseY * -0.025
-              //   }deg)`,
-              // }}
-              // onMouseMove={handleMouseMove}
+              style={{
+                transform: `rotateX(${mouseX * 0.015}deg) rotateY(${
+                  mouseY * -0.015
+                }deg)`,
+              }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
             >
               <div className="tablet-image">
                 <div
@@ -112,8 +102,12 @@ function App() {
                   onClick={() => {
                     setShowIntro((prevState) => !prevState);
                   }}
-                  onMouseLeave={hoverOffTabletImage}
-                  onMouseEnter={hoverTabletImage}
+                  onMouseLeave={() => {
+                    setTabletHovered(false);
+                  }}
+                  onMouseEnter={() => {
+                    setTabletHovered(true);
+                  }}
                 >
                   <svg viewBox="0 0 24 24">
                     <path d="M21.4086 9.35258C23.5305 10.5065 23.5305 13.4935 21.4086 14.6474L8.59662 21.6145C6.53435 22.736 4 21.2763 4 18.9671L4 5.0329C4 2.72368 6.53435 1.26402 8.59661 2.38548L21.4086 9.35258Z"></path>
@@ -134,11 +128,48 @@ function App() {
           </ScrollAnimation>
         </div>
       </header>
-      <section className="content-grid full-width">
-        <div>this is content</div>
+
+      <Divider type="content" />
+
+      <section className="content-grid full-width content">
+        <div className="cards grid">
+          <div className="card flex column">
+            <div className="card-icon" />
+            <h1>Donate</h1>
+            Help fund someone to receive health & wellness services and
+            educational classes through the latest technology app.
+            <Button version="card-button">
+              Read More
+              <IoMdArrowRoundUp />
+            </Button>
+          </div>
+          <div className="card flex column">
+            <div className="card-icon" />
+            <h1>Sponsor</h1>
+            We are supported by donations made from sponsors like you. Please
+            help to make a change in someone’s life.
+            <Button version="card-button">
+              Read More
+              <IoMdArrowRoundUp />
+            </Button>
+          </div>
+          <div className="card flex column">
+            <div className="card-icon" />
+            <h1>Community</h1>
+            We know you care about your community and want to make a difference.
+            Contact us and we will provide you with additional info.
+            <Button version="card-button">
+              Read More
+              <IoMdArrowRoundUp />
+            </Button>
+          </div>
+        </div>
       </section>
+
+      <Divider type="footer" />
+
       <footer className="content-grid full-width">
-        <div>Copyright © 2023 Roadway Home. All rights reserved.</div>
+        <div>Copyright © 2024 Roadway Home. All rights reserved.</div>
       </footer>
     </main>
   );
