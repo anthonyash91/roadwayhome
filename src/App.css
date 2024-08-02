@@ -31,7 +31,7 @@ body {
 .content-grid {
   --padding-inline: 3rem;
   --content-max-width: 135ch;
-  --breakout-max-width: 135ch;
+  --breakout-max-width: 165ch;
   --breakout-size: calc(
     (var(--breakout-max-width) - var(--content-max-width)) / 2
   );
@@ -118,6 +118,10 @@ header .grid {
 }
 
 @media screen and (max-width: 950px) {
+  header {
+    padding-top: 25px;
+  }
+
   header .grid {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -145,66 +149,18 @@ header .slogan {
 header h1 {
   color: var(--header-text-clr);
   font-size: clamp(3rem, 6vw, 4rem);
-  margin-bottom: 30px;
+  margin-bottom: 33px;
 }
 
 header .buttons {
   gap: 20px;
 }
 
-button {
-  align-items: center;
-  background-color: var(--accent-clr1);
-  border: 2px solid var(--accent-clr1);
-  border-radius: 99px;
-  color: var(--bg-clr);
-  display: flex;
-  font-weight: 600 !important;
-  gap: 13px;
-  padding: 10px 28px;
-  transition: background-color 0.2s, border 0.2s, color 0.2s linear;
-  white-space: nowrap;
-  /* width: 150px; */
-}
-
-button.accent {
-  background-color: var(--accent-clr2);
-  border: 2px solid var(--accent-clr2);
-}
-
-header button.accent {
-  display: none;
-}
-
-@media screen and (max-width: 950px) {
-  header button.accent {
-    display: block;
-  }
-}
-
-button.reentry {
-  border-radius: 10px;
-}
-
-button svg {
-  min-width: 20px;
-}
-
-button:hover {
-  background-color: var(--header-clr);
-  color: var(--accent-clr1);
-  cursor: pointer;
-}
-
-button.accent:hover {
-  color: var(--accent-clr2);
-}
-
 header ul.site-stats {
   /* grid-template-columns: repeat(3, 1fr); */
   gap: 30px;
   list-style: none;
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 0;
 }
 
@@ -221,7 +177,7 @@ header ul.site-stats li {
 
 header ul.site-stats li:not(:last-child) {
   /* align-items: center; */
-  border-right: 1px solid #ffe0d1;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -231,7 +187,6 @@ header ul.site-stats li:not(:last-child) {
 header .right {
   /* background: red; */
   justify-content: end;
-  perspective: 1000px;
   transition: 0.1s linear;
 }
 
@@ -437,10 +392,29 @@ header .tablet-image .mini-bottom-image.shrink {
 
 .cards {
   font-size: clamp(1rem, 3vw, 1rem);
-  gap: 50px;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  grid-template-columns: repeat(4, 1fr);
   line-height: 1.5rem;
-  padding: 55px 0;
+  padding: 75px 0;
+}
+
+@media screen and (max-width: 1300px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .cards {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .cards {
+    gap: 50px;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .card {
@@ -449,10 +423,27 @@ header .tablet-image .mini-bottom-image.shrink {
   border-radius: 12px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   gap: 20px;
+  height: 100%;
   justify-content: center;
-  padding: 50px;
+  padding: 50px 60px;
   text-align: center;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, scale 0.2s;
+}
+
+/* .card:hover {
+  scale: 1.1;
+} */
+
+@media screen and (max-width: 1000px) {
+  .card {
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 845px) {
+  .card {
+    padding: 50px;
+  }
 }
 
 .card:hover {
@@ -462,7 +453,7 @@ header .tablet-image .mini-bottom-image.shrink {
 
 .card h1 {
   color: var(--header-text-clr);
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: 1.5rem;
   transition: 0.2s;
 }
 
@@ -471,31 +462,51 @@ header .tablet-image .mini-bottom-image.shrink {
 }
 
 .card .card-icon {
+  align-items: center;
   border-radius: 99px;
+  display: flex;
+  font-size: 2rem;
   height: 70px;
+  justify-content: center;
   transition: 0.2s;
   width: 70px;
 }
 
-.card:nth-child(1) .card-icon {
-  background: url(./assets/donate.svg) no-repeat center/60% #d4fdc8;
+.card.donate .card-icon {
+  background-color: #d4fdc8;
+  color: #63d044;
 }
 
-.card:nth-child(2) .card-icon {
-  background: url(./assets/sponsor.svg) no-repeat center/50% #b6f1ff;
+.card.sponsor .card-icon {
+  background-color: #b6f1ff;
+  color: #30cbf1;
 }
 
-.card:nth-child(3) .card-icon {
-  background: url(./assets/community.svg) no-repeat center/60% #ffd0b6;
+.card.community .card-icon {
+  background-color: #ffd0b6;
+  color: #fe7b21;
+}
+
+.card.mission .card-icon {
+  background-color: #fff3bc;
+  color: #ffd502;
 }
 
 .card:hover .card-icon {
   background-color: #fff;
 }
 
+.card-text {
+  position: relative;
+  z-index: 2;
+}
+
 .card button.card-button {
   /* color: var(--accent-clr1); */
   gap: 2px;
+  margin-top: 5px;
+  position: relative;
+  z-index: 9;
 }
 
 .card:hover button.card-button {
@@ -513,10 +524,27 @@ header .tablet-image .mini-bottom-image.shrink {
   rotate: 40deg;
 }
 
+.card .card-bg-icon {
+  bottom: 22px;
+  color: #000;
+  font-size: 7rem;
+  opacity: 0.03;
+  position: absolute;
+  right: 22px;
+  transition: 0.2s;
+  z-index: 0;
+}
+
+.card:hover .card-bg-icon {
+  color: #fff;
+}
+
 footer {
   background-color: var(--footer-bg);
   color: var(--footer-text-clr);
   padding: 35px 0;
+  position: relative;
+  z-index: 9;
 }
 
 .grid {
@@ -529,6 +557,50 @@ footer {
 
 .flex.column {
   flex-direction: column;
+}
+
+button {
+  align-items: center;
+  background-color: var(--accent-clr1);
+  border: 2px solid var(--accent-clr1);
+  border-radius: 99px;
+  color: var(--bg-clr);
+  display: flex;
+  font-weight: 600 !important;
+  gap: 13px;
+  padding: 10px 28px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s linear;
+  white-space: nowrap;
+  /* width: 150px; */
+}
+
+button.accent {
+  background-color: var(--accent-clr2);
+  border: 2px solid var(--accent-clr2);
+}
+
+header button.accent {
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
+  header button.accent {
+    display: block;
+  }
+}
+
+button.reentry {
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: var(--header-clr);
+  color: var(--accent-clr1);
+  cursor: pointer;
+}
+
+button.accent:hover {
+  color: var(--accent-clr2);
 }
 
 button:active {
