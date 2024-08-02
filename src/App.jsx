@@ -13,7 +13,7 @@ import {
   TbHeartFilled,
 } from "react-icons/tb";
 
-import "./app.css";
+import "./App.css";
 import "./reset.css";
 
 function App() {
