@@ -8,7 +8,7 @@ nav {
   justify-content: space-between;
 }
 
-.inner-nav svg.logo {
+.inner-nav .logo-img {
   display: none;
 }
 
@@ -33,9 +33,9 @@ nav {
     align-items: center;
   }
 
-  .inner-nav svg.logo {
+  .inner-nav .logo-img {
     display: block;
-    width: 50px;
+    max-width: 70px;
   }
 
   button.reentry {
@@ -55,6 +55,10 @@ nav {
   display: flex;
   padding-right: 20px;
   transition: color 0.2s linear;
+}
+
+.navigation li.logo img {
+  width: 30px;
 }
 
 @media screen and (max-width: 850px) {
